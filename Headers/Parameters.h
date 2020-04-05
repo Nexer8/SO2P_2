@@ -1,0 +1,15 @@
+//
+// Created by mwisniewski on 4/1/20.
+//
+
+#ifndef SO2P_2_PARAMETERS_H
+#define SO2P_2_PARAMETERS_H
+
+#define NUMBER_OF_HAIRDRESSERS 5
+#define NUMBER_OF_SCISSORS NUMBER_OF_HAIRDRESSERS
+#define NUMBER_OF_CLIENTS 10
+#define BREAK_TIME 200
+#define CUTTING_HAIR_TIME 350
+#define WORKING_DAY_TIME 10
+
+#endif //SO2P_2_PARAMETERS_H
