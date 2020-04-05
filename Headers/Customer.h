@@ -19,7 +19,7 @@ enum class Customers_state {
 class Customer {
 private:
     int id;
-    Customers_state state;
+    volatile Customers_state state;
 
 public:
     std::mutex mutex;

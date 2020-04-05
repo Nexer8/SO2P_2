@@ -17,6 +17,7 @@ Hairdresser::Hairdresser(Salon &salon, Scissors &thinning_scissors, Scissors &ha
 }
 
 Hairdresser::~Hairdresser() {
+    customers.clear();
     life.join();
 }
 
