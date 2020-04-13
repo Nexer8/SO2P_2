@@ -19,7 +19,7 @@ private:
 
 public:
     std::vector<std::shared_ptr<Scissors> > scissors;
-    std::list<std::shared_ptr<Customer> > customers;
+    std::vector<std::shared_ptr<Customer> > customers;
     volatile int no_of_ready_hairdressers = 0;
     volatile int no_of_ready_customers = 0;
 

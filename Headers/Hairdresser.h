@@ -15,7 +15,8 @@ enum class Hairdressers_state {
     WAITING_FOR_A_CLIENT,
     TAKING_A_BREAK,
     CUTTING_HAIR,
-    WAITING_FOR_SCISSORS
+    WAITING_FOR_SCISSORS,
+    END_OF_WORK
 };
 
 static int current_hairdresser_id = 0;
@@ -32,7 +33,7 @@ private:
     Salon &salon;
     Scissors &thinning_scissors;
     Scissors &hair_cutting_shears;
-    std::list<std::shared_ptr<Customer> > &customers;
+    std::vector<std::shared_ptr<Customer> > &customers;
     std::thread life;
 
     std::shared_ptr<Customer> wait_for_a_client();
@@ -45,7 +46,7 @@ private:
 
 public:
     Hairdresser(Salon &salon, Scissors &thinning_scissors, Scissors &hair_cutting_shears,
-                std::list<std::shared_ptr<Customer> > &customers);
+                std::vector<std::shared_ptr<Customer> > &customers);
 
     ~Hairdresser();
 

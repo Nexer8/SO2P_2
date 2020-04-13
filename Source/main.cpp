@@ -25,6 +25,7 @@ int main() {
     Visualizer *visualizer = new Visualizer(hairdressers, salon);
     this_thread::sleep_for(chrono::seconds(WORKING_DAY_TIME));
     salon.no_of_ready_customers = 0;
+    salon.no_of_ready_hairdressers = 0;
 
     delete visualizer;
     hairdressers.clear();

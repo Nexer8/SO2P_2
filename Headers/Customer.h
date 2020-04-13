@@ -13,22 +13,23 @@ static int current_customer_id = 0;
 
 enum class Customers_state {
     WAITING_FOR_A_CUT,
-    HAVING_A_HAIRCUT
+    HAVING_A_HAIRCUT,
+    DONE
 };
 
 class Customer {
 private:
     int id;
-    volatile Customers_state state;
-
 public:
+
     std::mutex mutex;
+    volatile Customers_state state;
 
     int get_id() { return id; }
 
-    Customers_state get_state() { return state; }
+    volatile Customers_state get_state() { return state; }
 
-    void set_state(Customers_state state) { state = state; }
+//    void set_state(Customers_state state) { state = state; }
 
     Customer();
 };
