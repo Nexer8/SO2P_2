@@ -10,6 +10,7 @@
 #include <ncurses.h>
 #include <vector>
 #include "Hairdresser.h"
+#include "City.h"
 
 
 /*! \class Visualizer
@@ -21,8 +22,8 @@ class Visualizer {
 private:
     std::thread thread;
     WINDOW *window;
+    City &city;
     std::vector<std::shared_ptr<Hairdresser>> &hairdressers;
-    Salon &salon;
 
     struct Window_params {
         int x_max;
@@ -39,7 +40,7 @@ private:
     void update();
 
 public:
-    Visualizer(std::vector<std::shared_ptr<Hairdresser> > &hairdressers, Salon &salon);
+    Visualizer(City &city, std::vector<std::shared_ptr<Hairdresser> > &hairdressers);
 
     ~Visualizer();
 };

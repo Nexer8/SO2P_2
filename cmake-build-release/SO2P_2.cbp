@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6"/>
+	<Project>
+		<Option title="SO2P_2"/>
+		<Option makefile_is_custom="1"/>
+		<Option compiler="gcc"/>
+		<Option virtualFolders="CMake Files\;"/>
+		<Build>
+			<Target title="all">
+				<Option working_dir="/home/mwisniewski/CLionProjects/SO2P_2/cmake-build-release"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/gmake -j8 -f &quot;/home/mwisniewski/CLionProjects/SO2P_2/cmake-build-release/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="/usr/bin/gmake -j8 -f &quot;/home/mwisniewski/CLionProjects/SO2P_2/cmake-build-release/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/gmake -j8 -f &quot;/home/mwisniewski/CLionProjects/SO2P_2/cmake-build-release/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/gmake -j8 -f &quot;/home/mwisniewski/CLionProjects/SO2P_2/cmake-build-release/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="rebuild_cache">
+				<Option working_dir="/home/mwisniewski/CLionProjects/SO2P_2/cmake-build-release"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/gmake -j8 -f &quot;/home/mwisniewski/CLionProjects/SO2P_2/cmake-build-release/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="/usr/bin/gmake -j8 -f &quot;/home/mwisniewski/CLionProjects/SO2P_2/cmake-build-release/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/gmake -j8 -f &quot;/home/mwisniewski/CLionProjects/SO2P_2/cmake-build-release/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/gmake -j8 -f &quot;/home/mwisniewski/CLionProjects/SO2P_2/cmake-build-release/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="edit_cache">
+				<Option working_dir="/home/mwisniewski/CLionProjects/SO2P_2/cmake-build-release"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/gmake -j8 -f &quot;/home/mwisniewski/CLionProjects/SO2P_2/cmake-build-release/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<CompileFile command="/usr/bin/gmake -j8 -f &quot;/home/mwisniewski/CLionProjects/SO2P_2/cmake-build-release/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/gmake -j8 -f &quot;/home/mwisniewski/CLionProjects/SO2P_2/cmake-build-release/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/gmake -j8 -f &quot;/home/mwisniewski/CLionProjects/SO2P_2/cmake-build-release/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="SO2P_2">
+				<Option output="/home/mwisniewski/CLionProjects/SO2P_2/cmake-build-release/SO2P_2" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/mwisniewski/CLionProjects/SO2P_2/cmake-build-release"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/usr/lib/gcc/x86_64-redhat-linux/9/../../../../include/c++/9"/>
+					<Add directory="/usr/lib/gcc/x86_64-redhat-linux/9/../../../../include/c++/9/x86_64-redhat-linux"/>
+					<Add directory="/usr/lib/gcc/x86_64-redhat-linux/9/../../../../include/c++/9/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-redhat-linux/9/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/gmake -j8 -f &quot;/home/mwisniewski/CLionProjects/SO2P_2/cmake-build-release/Makefile&quot;  VERBOSE=1 SO2P_2"/>
+					<CompileFile command="/usr/bin/gmake -j8 -f &quot;/home/mwisniewski/CLionProjects/SO2P_2/cmake-build-release/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/gmake -j8 -f &quot;/home/mwisniewski/CLionProjects/SO2P_2/cmake-build-release/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/gmake -j8 -f &quot;/home/mwisniewski/CLionProjects/SO2P_2/cmake-build-release/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="SO2P_2/fast">
+				<Option output="/home/mwisniewski/CLionProjects/SO2P_2/cmake-build-release/SO2P_2" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/mwisniewski/CLionProjects/SO2P_2/cmake-build-release"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/usr/lib/gcc/x86_64-redhat-linux/9/../../../../include/c++/9"/>
+					<Add directory="/usr/lib/gcc/x86_64-redhat-linux/9/../../../../include/c++/9/x86_64-redhat-linux"/>
+					<Add directory="/usr/lib/gcc/x86_64-redhat-linux/9/../../../../include/c++/9/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-redhat-linux/9/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/gmake -j8 -f &quot;/home/mwisniewski/CLionProjects/SO2P_2/cmake-build-release/Makefile&quot;  VERBOSE=1 SO2P_2/fast"/>
+					<CompileFile command="/usr/bin/gmake -j8 -f &quot;/home/mwisniewski/CLionProjects/SO2P_2/cmake-build-release/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/gmake -j8 -f &quot;/home/mwisniewski/CLionProjects/SO2P_2/cmake-build-release/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/gmake -j8 -f &quot;/home/mwisniewski/CLionProjects/SO2P_2/cmake-build-release/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+		</Build>
+		<Unit filename="/home/mwisniewski/CLionProjects/SO2P_2/Headers/City.h">
+			<Option target="SO2P_2"/>
+		</Unit>
+		<Unit filename="/home/mwisniewski/CLionProjects/SO2P_2/Headers/Customer.h">
+			<Option target="SO2P_2"/>
+		</Unit>
+		<Unit filename="/home/mwisniewski/CLionProjects/SO2P_2/Headers/Hairdresser.h">
+			<Option target="SO2P_2"/>
+		</Unit>
+		<Unit filename="/home/mwisniewski/CLionProjects/SO2P_2/Headers/Parameters.h">
+			<Option target="SO2P_2"/>
+		</Unit>
+		<Unit filename="/home/mwisniewski/CLionProjects/SO2P_2/Headers/Salon.h">
+			<Option target="SO2P_2"/>
+		</Unit>
+		<Unit filename="/home/mwisniewski/CLionProjects/SO2P_2/Headers/Scissors.h">
+			<Option target="SO2P_2"/>
+		</Unit>
+		<Unit filename="/home/mwisniewski/CLionProjects/SO2P_2/Headers/Visualizer.h">
+			<Option target="SO2P_2"/>
+		</Unit>
+		<Unit filename="/home/mwisniewski/CLionProjects/SO2P_2/Source/City.cpp">
+			<Option target="SO2P_2"/>
+		</Unit>
+		<Unit filename="/home/mwisniewski/CLionProjects/SO2P_2/Source/Customer.cpp">
+			<Option target="SO2P_2"/>
+		</Unit>
+		<Unit filename="/home/mwisniewski/CLionProjects/SO2P_2/Source/Hairdresser.cpp">
+			<Option target="SO2P_2"/>
+		</Unit>
+		<Unit filename="/home/mwisniewski/CLionProjects/SO2P_2/Source/Salon.cpp">
+			<Option target="SO2P_2"/>
+		</Unit>
+		<Unit filename="/home/mwisniewski/CLionProjects/SO2P_2/Source/Scissors.cpp">
+			<Option target="SO2P_2"/>
+		</Unit>
+		<Unit filename="/home/mwisniewski/CLionProjects/SO2P_2/Source/Visualizer.cpp">
+			<Option target="SO2P_2"/>
+		</Unit>
+		<Unit filename="/home/mwisniewski/CLionProjects/SO2P_2/Source/main.cpp">
+			<Option target="SO2P_2"/>
+		</Unit>
+		<Unit filename="/home/mwisniewski/CLionProjects/SO2P_2/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\"/>
+		</Unit>
+	</Project>
+</CodeBlocks_project_file>

@@ -12,8 +12,11 @@
 #include "Scissors.h"
 #include "Customer.h"
 
+static int current_salon_id = 0;
+
 class Salon {
 private:
+    int id;
     std::condition_variable cv;
     std::mutex cv_m;
 
@@ -25,9 +28,13 @@ public:
 
     void wait_for_all();
 
-    Salon();
+    int get_id() { return id; }
+
+    Salon(std::string name);
 
     ~Salon();
+
+    std::string name;
 };
 
 

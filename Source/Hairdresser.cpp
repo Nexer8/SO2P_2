@@ -9,10 +9,10 @@ using namespace std;
 
 Hairdresser::Hairdresser(Salon &salon, Scissors &thinning_scissors, Scissors &hair_cutting_shears,
                          vector<shared_ptr<Customer> > &customers) : salon(salon), thinning_scissors(thinning_scissors),
-                                                                   hair_cutting_shears(hair_cutting_shears),
-                                                                   customers(customers),
-                                                                   life(&Hairdresser::work, this),
-                                                                   id(current_hairdresser_id++) {
+                                                                     hair_cutting_shears(hair_cutting_shears),
+                                                                     customers(customers),
+                                                                     life(&Hairdresser::work, this),
+                                                                     id(current_hairdresser_id++) {
     state = Hairdressers_state::WAITING_FOR_A_CLIENT;
 }
 
@@ -40,8 +40,7 @@ void Hairdresser::cut_hair() {
 
     if (current_customer == nullptr) {
         return;
-    }
-    else {
+    } else {
         current_customer->state = Customers_state::HAVING_A_HAIRCUT;
     }
 
