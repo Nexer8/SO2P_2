@@ -6,11 +6,17 @@
 
 #IncludeRegexTransform: 
 
+/home/mwisniewski/CLionProjects/SO2P_2/Headers/City.h
+Salon.h
+/home/mwisniewski/CLionProjects/SO2P_2/Headers/Salon.h
+
 /home/mwisniewski/CLionProjects/SO2P_2/Headers/Customer.h
 memory
 -
 mutex
 -
+Salon.h
+/home/mwisniewski/CLionProjects/SO2P_2/Headers/Salon.h
 
 /home/mwisniewski/CLionProjects/SO2P_2/Headers/Hairdresser.h
 thread
@@ -37,8 +43,6 @@ condition_variable
 -
 Scissors.h
 /home/mwisniewski/CLionProjects/SO2P_2/Headers/Scissors.h
-Customer.h
-/home/mwisniewski/CLionProjects/SO2P_2/Headers/Customer.h
 
 /home/mwisniewski/CLionProjects/SO2P_2/Headers/Scissors.h
 mutex
@@ -55,6 +59,12 @@ vector
 -
 Hairdresser.h
 /home/mwisniewski/CLionProjects/SO2P_2/Headers/Hairdresser.h
+City.h
+/home/mwisniewski/CLionProjects/SO2P_2/Headers/City.h
+
+/home/mwisniewski/CLionProjects/SO2P_2/Source/City.cpp
+../Headers/City.h
+/home/mwisniewski/CLionProjects/SO2P_2/Headers/City.h
 
 /home/mwisniewski/CLionProjects/SO2P_2/Source/Customer.cpp
 ../Headers/Customer.h
@@ -95,4 +105,6 @@ memory
 /home/mwisniewski/CLionProjects/SO2P_2/Headers/Salon.h
 ../Headers/Visualizer.h
 /home/mwisniewski/CLionProjects/SO2P_2/Headers/Visualizer.h
+../Headers/City.h
+/home/mwisniewski/CLionProjects/SO2P_2/Headers/City.h
 

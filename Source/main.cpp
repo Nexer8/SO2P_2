@@ -39,10 +39,12 @@ int main() {
 
     Visualizer *visualizer = new Visualizer(city, hairdressers);
     this_thread::sleep_for(chrono::seconds(WORKING_DAY_TIME));
+
     city.no_of_ready_salons = 0;
     for (const auto &salon: city.salons) {
         salon->no_of_ready_hairdressers = 0;
     }
+    this_thread::sleep_for(chrono::milliseconds(FIXED_VISUALIZER_TIME));
 
     delete visualizer;
     hairdressers.clear();

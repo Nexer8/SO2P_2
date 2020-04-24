@@ -4,4 +4,6 @@
 
 #include "../Headers/Customer.h"
 
-Customer::Customer() :id(current_customer_id++), state(Customers_state::WAITING_FOR_A_CUT) {}
+Customer::Customer() : id(current_customer_id++), state(Customers_state::WAITING_FOR_A_CUT) {
+    salon = nullptr;
+}

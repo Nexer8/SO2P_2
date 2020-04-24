@@ -23,16 +23,13 @@ Hairdresser::~Hairdresser() {
 
 void Hairdresser::take_a_break() {
     state = Hairdressers_state::TAKING_A_BREAK;
-
-    chrono::milliseconds break_time(BREAK_TIME);
-    this_thread::sleep_for(break_time);
+    this_thread::sleep_for(chrono::milliseconds(BREAK_TIME));
 }
 
 void Hairdresser::cut_hair() {
     if (no_of_ready_customers == 0) {
         state = Hairdressers_state::END_OF_WORK;
-        chrono::seconds end_time(WORKING_DAY_TIME);
-        this_thread::sleep_for(end_time);
+        this_thread::sleep_for(chrono::seconds(WORKING_DAY_TIME));
     }
 
     state = Hairdressers_state::WAITING_FOR_A_CLIENT;
@@ -53,9 +50,7 @@ void Hairdresser::cut_hair() {
     lock_guard<mutex> current_customer_lock(current_customer->mutex, adopt_lock);
 
     state = Hairdressers_state::CUTTING_HAIR;
-
-    chrono::milliseconds cutting_har_time(CUTTING_HAIR_TIME);
-    this_thread::sleep_for(cutting_har_time);
+    this_thread::sleep_for(chrono::milliseconds(CUTTING_HAIR_TIME));
 
     current_customer->state = Customers_state::DONE;
     no_of_ready_customers--;
@@ -74,6 +69,7 @@ shared_ptr<Customer> Hairdresser::wait_for_a_client() {
     for (auto customer : customers) {
         if (customer->get_state() == Customers_state::WAITING_FOR_A_CUT) {
             customer->salon = salon;
+
             return customer;
         }
     }

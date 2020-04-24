@@ -65,37 +65,6 @@ void Visualizer::init() {
         }
     }
 
-//    mul = 0;
-//    for (int idx = 0; idx < NUMBER_OF_SALONS; idx++) {
-//        for (int i = 0; i < NUMBER_OF_HAIRDRESSERS_PER_SALON; i++) {
-//            if (idx == 0) {
-//                mvwprintw(window, 2 * i + 5, 2, "%s",
-//                          std::to_string(hairdressers[i + idx * NUMBER_OF_HAIRDRESSERS_PER_SALON]->get_id()).c_str());
-//            } else {
-//                mvwprintw(window, 2 * mul + 5, (COLUMNS_PER_SALON * column_width) + 1, "%s",
-//                          std::to_string(hairdressers[i + idx * NUMBER_OF_HAIRDRESSERS_PER_SALON]->get_id()).c_str());
-//                mul++;
-//            }
-//        }
-//    }
-
-//    TODO: It's client who should have a field salon!!!
-//    mul = 0;
-//    int idx = 0;
-//    for (const auto& customer: hairdressers[0].get()->get_customers()) {
-//        if (customer->salon->get_id() == 0) {
-//            mvwprintw(window, 2 * idx + 5, column_width + 1, "%s",
-//                      std::to_string(customer->get_id()).c_str());
-//        }
-//        else {
-//            mvwprintw(window, 2 * mul + 5, (COLUMNS_PER_SALON + 1) * column_width + 1, "%s",
-//                      std::to_string(customer->get_id()).c_str());
-//            mul++;
-//        }
-//
-//        idx++;
-//    }
-
     touchwin(window);
     wrefresh(window);
 }
@@ -164,8 +133,9 @@ void Visualizer::update_screen() {
     int first_salon_capacity = 0;
     int second_salon_capacity = 0;
     int y_axis_alignment;
+
     for (const auto &customer : hairdressers[0]->get_customers()) {
-        if (customer->salon == nullptr) break;
+        if (customer->salon.get() == nullptr) break;
 
         if (customer->salon->get_id() == 0) {
             y_axis_alignment = first_salon_capacity;
