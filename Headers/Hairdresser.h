@@ -20,6 +20,7 @@ enum class Hairdressers_state {
 };
 
 static int current_hairdresser_id = 0;
+static volatile int no_of_ready_customers = NUMBER_OF_CLIENTS;
 
 /*! \class Hairdresser
     \brief A class that simulates hairdresser.
@@ -30,7 +31,7 @@ class Hairdresser {
 private:
     int id;
     volatile Hairdressers_state state;
-    Salon &salon;
+    std::shared_ptr<Salon> salon;
     Scissors &thinning_scissors;
     Scissors &hair_cutting_shears;
     std::vector<std::shared_ptr<Customer> > &customers;
@@ -45,12 +46,16 @@ private:
     void cut_hair();
 
 public:
-    Hairdresser(Salon &salon, Scissors &thinning_scissors, Scissors &hair_cutting_shears,
+    Hairdresser(std::shared_ptr<Salon> salon, Scissors &thinning_scissors, Scissors &hair_cutting_shears,
                 std::vector<std::shared_ptr<Customer> > &customers);
 
     ~Hairdresser();
 
     int get_id() { return id; }
+
+    std::vector<std::shared_ptr<Customer> > get_customers() {
+        return customers;
+    }
 
     Hairdressers_state get_state() { return state; }
 };

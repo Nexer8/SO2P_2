@@ -12,10 +12,10 @@ using namespace std;
 
 class City {
 public:
-    vector<shared_ptr<Salon> > salons;
+    vector<shared_ptr<Salon> > &salons;
     volatile int no_of_ready_salons = 0;
 
-    City();
+    City(vector<shared_ptr<Salon> > &salons);
 
     ~City();
 };

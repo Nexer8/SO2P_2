@@ -8,6 +8,7 @@
 
 #include <memory>
 #include <mutex>
+#include "Salon.h"
 
 static int current_customer_id = 0;
 
@@ -21,15 +22,13 @@ class Customer {
 private:
     int id;
 public:
-
+    std::shared_ptr<Salon> salon;
     std::mutex mutex;
     volatile Customers_state state;
 
     int get_id() { return id; }
 
     volatile Customers_state get_state() { return state; }
-
-//    void set_state(Customers_state state) { state = state; }
 
     Customer();
 };

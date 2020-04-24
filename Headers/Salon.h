@@ -10,7 +10,6 @@
 #include <list>
 #include <condition_variable>
 #include "Scissors.h"
-#include "Customer.h"
 
 static int current_salon_id = 0;
 
@@ -22,9 +21,8 @@ private:
 
 public:
     std::vector<std::shared_ptr<Scissors> > scissors;
-    std::vector<std::shared_ptr<Customer> > customers;
+    std::string name;
     volatile int no_of_ready_hairdressers = 0;
-    volatile int no_of_ready_customers = 0;
 
     void wait_for_all();
 
@@ -33,8 +31,6 @@ public:
     Salon(std::string name);
 
     ~Salon();
-
-    std::string name;
 };
 
 

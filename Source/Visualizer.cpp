@@ -10,8 +10,7 @@
 Visualizer::Visualizer(City &city, std::vector<std::shared_ptr<Hairdresser> > &hairdressers) :
         city(city), hairdressers(hairdressers) {
     init();
-//    TODO: Add one variable for the city to check if both salons are ready
-    while (!city.no_of_ready_salons);
+
     thread = std::thread(&Visualizer::update, this);
 }
 
@@ -66,34 +65,36 @@ void Visualizer::init() {
         }
     }
 
-    mul = 0;
-    for (int idx = 0; idx < NUMBER_OF_SALONS; idx++) {
-        for (int i = 0; i < NUMBER_OF_HAIRDRESSERS_PER_SALON; i++) {
-            if (idx == 0) {
-                mvwprintw(window, 2 * i + 5, 2, "%s",
-                          std::to_string(hairdressers[i + idx * NUMBER_OF_HAIRDRESSERS_PER_SALON]->get_id()).c_str());
-            } else {
-                mvwprintw(window, 2 * mul + 5, (COLUMNS_PER_SALON * column_width) + 1, "%s",
-                          std::to_string(hairdressers[i + idx * NUMBER_OF_HAIRDRESSERS_PER_SALON]->get_id()).c_str());
-                mul++;
-            }
-        }
-    }
+//    mul = 0;
+//    for (int idx = 0; idx < NUMBER_OF_SALONS; idx++) {
+//        for (int i = 0; i < NUMBER_OF_HAIRDRESSERS_PER_SALON; i++) {
+//            if (idx == 0) {
+//                mvwprintw(window, 2 * i + 5, 2, "%s",
+//                          std::to_string(hairdressers[i + idx * NUMBER_OF_HAIRDRESSERS_PER_SALON]->get_id()).c_str());
+//            } else {
+//                mvwprintw(window, 2 * mul + 5, (COLUMNS_PER_SALON * column_width) + 1, "%s",
+//                          std::to_string(hairdressers[i + idx * NUMBER_OF_HAIRDRESSERS_PER_SALON]->get_id()).c_str());
+//                mul++;
+//            }
+//        }
+//    }
 
 //    TODO: It's client who should have a field salon!!!
-    mul = 0;
-    for (const auto &salon: city.salons) {
-        for (int i = 0; i < NUMBER_OF_CLIENTS; i++) {
-            if (i < NUMBER_OF_CLIENTS / 2) {
-                mvwprintw(window, 2 * i + 5, column_width + 1, "%s",
-                          std::to_string(salon->customers[i]->get_id()).c_str());
-            } else {
-                mvwprintw(window, 2 * mul + 5, (COLUMNS_PER_SALON + 1) * column_width + 1, "%s",
-                          std::to_string(salon->customers[i]->get_id()).c_str());
-                mul++;
-            }
-        }
-    }
+//    mul = 0;
+//    int idx = 0;
+//    for (const auto& customer: hairdressers[0].get()->get_customers()) {
+//        if (customer->salon->get_id() == 0) {
+//            mvwprintw(window, 2 * idx + 5, column_width + 1, "%s",
+//                      std::to_string(customer->get_id()).c_str());
+//        }
+//        else {
+//            mvwprintw(window, 2 * mul + 5, (COLUMNS_PER_SALON + 1) * column_width + 1, "%s",
+//                      std::to_string(customer->get_id()).c_str());
+//            mul++;
+//        }
+//
+//        idx++;
+//    }
 
     touchwin(window);
     wrefresh(window);
@@ -119,66 +120,87 @@ void Visualizer::update_screen() {
             switch (hairdressers[i + idx * NUMBER_OF_HAIRDRESSERS_PER_SALON]->get_state()) {
                 case Hairdressers_state::WAITING_FOR_A_CLIENT:
                     wattron(window, COLOR_PAIR(1));
-                    mvwprintw(window, 2 * i + 5, (mul * column_width) + 4, "Waiting for a client");
+                    mvwprintw(window, 2 * i + 5, (mul * column_width) + 1,
+                              (to_string(hairdressers[i + idx * NUMBER_OF_HAIRDRESSERS_PER_SALON]->get_id()) +
+                               " Waiting for a client").c_str());
                     wattroff(window, COLOR_PAIR(1));
                     break;
 
                 case Hairdressers_state::WAITING_FOR_SCISSORS:
                     wattron(window, COLOR_PAIR(2));
-                    mvwprintw(window, 2 * i + 5, (mul * column_width) + 4, "Waiting for scissors");
+                    mvwprintw(window, 2 * i + 5, (mul * column_width) + 1,
+                              (to_string(hairdressers[i + idx * NUMBER_OF_HAIRDRESSERS_PER_SALON]->get_id()) +
+                               " Waiting for scissors").c_str());
                     wattroff(window, COLOR_PAIR(2));
                     break;
 
                 case Hairdressers_state::TAKING_A_BREAK:
                     wattron(window, COLOR_PAIR(3));
-                    mvwprintw(window, 2 * i + 5, (mul * column_width) + 4, "Taking a break      ");
+                    mvwprintw(window, 2 * i + 5, (mul * column_width) + 1,
+                              (to_string(hairdressers[i + idx * NUMBER_OF_HAIRDRESSERS_PER_SALON]->get_id()) +
+                               " Taking a break      ").c_str());
                     wattroff(window, COLOR_PAIR(3));
                     break;
 
                 case Hairdressers_state::CUTTING_HAIR:
                     wattron(window, COLOR_PAIR(4));
-                    mvwprintw(window, 2 * i + 5, (mul * column_width) + 4, "Cutting hair        ");
+                    mvwprintw(window, 2 * i + 5, (mul * column_width) + 1,
+                              (to_string(hairdressers[i + idx * NUMBER_OF_HAIRDRESSERS_PER_SALON]->get_id()) +
+                               " Cutting hair        ").c_str());
                     wattroff(window, COLOR_PAIR(4));
                     break;
 
                 default:
                     wattron(window, COLOR_PAIR(5));
-                    mvwprintw(window, 2 * i + 5, (mul * column_width) + 4, "End of work         ");
+                    mvwprintw(window, 2 * i + 5, (mul * column_width) + 1,
+                              (to_string(hairdressers[i + idx * NUMBER_OF_HAIRDRESSERS_PER_SALON]->get_id()) +
+                               " End of work         ").c_str());
                     wattroff(window, COLOR_PAIR(5));
                     break;
             }
         }
     }
 
-    for (const auto &salon: city.salons) {
-        if (salon->get_id() == 0) {
-            mul = 3;
+    int first_salon_capacity = 0;
+    int second_salon_capacity = 0;
+    int y_axis_alignment;
+    for (const auto &customer : hairdressers[0]->get_customers()) {
+        if (customer->salon == nullptr) break;
+
+        if (customer->salon->get_id() == 0) {
+            y_axis_alignment = first_salon_capacity;
+            first_salon_capacity++;
+            mul = 1;
         } else {
-            mul = 3 + COLUMNS_PER_SALON;
+            y_axis_alignment = second_salon_capacity;
+            second_salon_capacity++;
+            mul = 1 + COLUMNS_PER_SALON;
         }
 
-        for (const auto &customer : salon->customers) {
-            switch (customer->get_state()) {
-                case Customers_state::WAITING_FOR_A_CUT:
-                    wattron(window, COLOR_PAIR(1));
-                    mvwprintw(window, 2 * customer->get_id() + 5, mul * column_width + 4, "Waiting for a cut");
-                    wattroff(window, COLOR_PAIR(1));
-                    break;
+        switch (customer->get_state()) {
+            case Customers_state::WAITING_FOR_A_CUT:
+                wattron(window, COLOR_PAIR(1));
+                mvwprintw(window, 2 * y_axis_alignment + 5, mul * column_width + 1,
+                          (to_string(customer->get_id()) + " Waiting for a cut").c_str());
+                wattroff(window, COLOR_PAIR(1));
+                break;
 
-                case Customers_state::HAVING_A_HAIRCUT:
-                    wattron(window, COLOR_PAIR(4));
-                    mvwprintw(window, 2 * customer->get_id() + 5, mul * column_width + 4, "Having a haircut ");
-                    wattroff(window, COLOR_PAIR(4));
-                    break;
+            case Customers_state::HAVING_A_HAIRCUT:
+                wattron(window, COLOR_PAIR(4));
+                mvwprintw(window, 2 * y_axis_alignment + 5, mul * column_width + 1,
+                          (to_string(customer->get_id()) + " Having a haircut ").c_str());
+                wattroff(window, COLOR_PAIR(4));
+                break;
 
-                default:
-                    wattron(window, COLOR_PAIR(5));
-                    mvwprintw(window, 2 * customer->get_id() + 5, mul * column_width + 4, "Done             ");
-                    wattroff(window, COLOR_PAIR(5));
-                    break;
-            }
+            default:
+                wattron(window, COLOR_PAIR(5));
+                mvwprintw(window, 2 * y_axis_alignment + 5, mul * column_width + 1,
+                          (to_string(customer->get_id()) + " Done             ").c_str());
+                wattroff(window, COLOR_PAIR(5));
+                break;
         }
     }
+
     touchwin(window);
     wrefresh(window);
 }

@@ -7,7 +7,7 @@
 
 using namespace std;
 
-Hairdresser::Hairdresser(Salon &salon, Scissors &thinning_scissors, Scissors &hair_cutting_shears,
+Hairdresser::Hairdresser(shared_ptr<Salon> salon, Scissors &thinning_scissors, Scissors &hair_cutting_shears,
                          vector<shared_ptr<Customer> > &customers) : salon(salon), thinning_scissors(thinning_scissors),
                                                                      hair_cutting_shears(hair_cutting_shears),
                                                                      customers(customers),
@@ -29,7 +29,7 @@ void Hairdresser::take_a_break() {
 }
 
 void Hairdresser::cut_hair() {
-    if (salon.no_of_ready_customers == 0) {
+    if (no_of_ready_customers == 0) {
         state = Hairdressers_state::END_OF_WORK;
         chrono::seconds end_time(WORKING_DAY_TIME);
         this_thread::sleep_for(end_time);
@@ -58,14 +58,13 @@ void Hairdresser::cut_hair() {
     this_thread::sleep_for(cutting_har_time);
 
     current_customer->state = Customers_state::DONE;
-//    customers.erase(customers.begin() + current_customer->get_id());
-    salon.no_of_ready_customers--;
+    no_of_ready_customers--;
 }
 
 void Hairdresser::work() {
-    salon.wait_for_all();
+    salon->wait_for_all();
 
-    while (salon.no_of_ready_hairdressers) {
+    while (salon->no_of_ready_hairdressers) {
         take_a_break();
         cut_hair();
     }
@@ -74,6 +73,7 @@ void Hairdresser::work() {
 shared_ptr<Customer> Hairdresser::wait_for_a_client() {
     for (auto customer : customers) {
         if (customer->get_state() == Customers_state::WAITING_FOR_A_CUT) {
+            customer->salon = salon;
             return customer;
         }
     }

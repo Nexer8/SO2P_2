@@ -4,11 +4,8 @@
 
 #include "../Headers/City.h"
 
-City::City() {
-    for (int i = 0; i < NUMBER_OF_SALONS; i++) {
-        salons.emplace_back(new Salon("Salon " + to_string(i)));
-        no_of_ready_salons++;
-    }
+City::City(vector<shared_ptr<Salon> > &salons) : salons(salons) {
+    no_of_ready_salons = salons.size();
 }
 
 City::~City() {
