@@ -29,6 +29,11 @@ CMakeFiles/SO2P_2.dir/Source/Scissors.cpp.o: ../Headers/Parameters.h
 CMakeFiles/SO2P_2.dir/Source/Scissors.cpp.o: ../Headers/Scissors.h
 CMakeFiles/SO2P_2.dir/Source/Scissors.cpp.o: ../Source/Scissors.cpp
 
+CMakeFiles/SO2P_2.dir/Source/Supplies.cpp.o: ../Headers/Parameters.h
+CMakeFiles/SO2P_2.dir/Source/Supplies.cpp.o: ../Headers/Scissors.h
+CMakeFiles/SO2P_2.dir/Source/Supplies.cpp.o: ../Headers/Supplies.h
+CMakeFiles/SO2P_2.dir/Source/Supplies.cpp.o: ../Source/Supplies.cpp
+
 CMakeFiles/SO2P_2.dir/Source/Visualizer.cpp.o: ../Headers/City.h
 CMakeFiles/SO2P_2.dir/Source/Visualizer.cpp.o: ../Headers/Customer.h
 CMakeFiles/SO2P_2.dir/Source/Visualizer.cpp.o: ../Headers/Hairdresser.h
@@ -44,6 +49,7 @@ CMakeFiles/SO2P_2.dir/Source/main.cpp.o: ../Headers/Hairdresser.h
 CMakeFiles/SO2P_2.dir/Source/main.cpp.o: ../Headers/Parameters.h
 CMakeFiles/SO2P_2.dir/Source/main.cpp.o: ../Headers/Salon.h
 CMakeFiles/SO2P_2.dir/Source/main.cpp.o: ../Headers/Scissors.h
+CMakeFiles/SO2P_2.dir/Source/main.cpp.o: ../Headers/Supplies.h
 CMakeFiles/SO2P_2.dir/Source/main.cpp.o: ../Headers/Visualizer.h
 CMakeFiles/SO2P_2.dir/Source/main.cpp.o: ../Source/main.cpp
 

@@ -32,8 +32,8 @@ private:
     int id;
     volatile Hairdressers_state state;
     std::shared_ptr<Salon> salon;
-    Scissors &thinning_scissors;
-    Scissors &hair_cutting_shears;
+    std::shared_ptr<Scissors> thinning_scissors;
+    std::shared_ptr<Scissors> hair_cutting_shears;
     std::vector<std::shared_ptr<Customer> > &customers;
     std::thread life;
 
@@ -46,8 +46,7 @@ private:
     void cut_hair();
 
 public:
-    Hairdresser(std::shared_ptr<Salon> salon, Scissors &thinning_scissors, Scissors &hair_cutting_shears,
-                std::vector<std::shared_ptr<Customer> > &customers);
+    Hairdresser(std::shared_ptr<Salon> salon, std::vector<std::shared_ptr<Customer> > &customers);
 
     ~Hairdresser();
 
@@ -56,6 +55,8 @@ public:
     std::vector<std::shared_ptr<Customer> > get_customers() {
         return customers;
     }
+
+    void wait_for_scissors();
 
     Hairdressers_state get_state() { return state; }
 };

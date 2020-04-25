@@ -9,6 +9,7 @@ set(CMAKE_DEPENDS_CHECK_CXX
   "/home/mwisniewski/CLionProjects/SO2P_2/Source/Hairdresser.cpp" "/home/mwisniewski/CLionProjects/SO2P_2/cmake-build-release/CMakeFiles/SO2P_2.dir/Source/Hairdresser.cpp.o"
   "/home/mwisniewski/CLionProjects/SO2P_2/Source/Salon.cpp" "/home/mwisniewski/CLionProjects/SO2P_2/cmake-build-release/CMakeFiles/SO2P_2.dir/Source/Salon.cpp.o"
   "/home/mwisniewski/CLionProjects/SO2P_2/Source/Scissors.cpp" "/home/mwisniewski/CLionProjects/SO2P_2/cmake-build-release/CMakeFiles/SO2P_2.dir/Source/Scissors.cpp.o"
+  "/home/mwisniewski/CLionProjects/SO2P_2/Source/Supplies.cpp" "/home/mwisniewski/CLionProjects/SO2P_2/cmake-build-release/CMakeFiles/SO2P_2.dir/Source/Supplies.cpp.o"
   "/home/mwisniewski/CLionProjects/SO2P_2/Source/Visualizer.cpp" "/home/mwisniewski/CLionProjects/SO2P_2/cmake-build-release/CMakeFiles/SO2P_2.dir/Source/Visualizer.cpp.o"
   "/home/mwisniewski/CLionProjects/SO2P_2/Source/main.cpp" "/home/mwisniewski/CLionProjects/SO2P_2/cmake-build-release/CMakeFiles/SO2P_2.dir/Source/main.cpp.o"
   )

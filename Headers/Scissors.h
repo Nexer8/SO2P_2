@@ -11,6 +11,7 @@
 class Scissors {
 public:
     std::mutex mutex;
+    volatile bool areTaken = false;
 };
 
 

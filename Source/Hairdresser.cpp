@@ -7,13 +7,14 @@
 
 using namespace std;
 
-Hairdresser::Hairdresser(shared_ptr<Salon> salon, Scissors &thinning_scissors, Scissors &hair_cutting_shears,
-                         vector<shared_ptr<Customer> > &customers) : salon(salon), thinning_scissors(thinning_scissors),
-                                                                     hair_cutting_shears(hair_cutting_shears),
-                                                                     customers(customers),
-                                                                     life(&Hairdresser::work, this),
-                                                                     id(current_hairdresser_id++) {
+Hairdresser::Hairdresser(shared_ptr<Salon> salon, vector<shared_ptr<Customer> > &customers) : salon(salon),
+                                                                                               customers(customers),
+                                                                                               life(&Hairdresser::work,
+                                                                                                    this),
+                                                                                               id(current_hairdresser_id++) {
     state = Hairdressers_state::WAITING_FOR_A_CLIENT;
+    thinning_scissors = nullptr;
+    hair_cutting_shears = nullptr;
 }
 
 Hairdresser::~Hairdresser() {
@@ -42,11 +43,12 @@ void Hairdresser::cut_hair() {
     }
 
     state = Hairdressers_state::WAITING_FOR_SCISSORS;
+    wait_for_scissors();
 
-    lock(thinning_scissors.mutex, hair_cutting_shears.mutex,
+    lock(thinning_scissors->mutex, hair_cutting_shears->mutex,
          current_customer->mutex);    // ensures there are no deadlocks
-    lock_guard<mutex> thinning_scissors_lock(thinning_scissors.mutex, adopt_lock);
-    lock_guard<mutex> hair_cutting_shears_lock(hair_cutting_shears.mutex, adopt_lock);
+    lock_guard<mutex> thinning_scissors_lock(thinning_scissors->mutex, adopt_lock);
+    lock_guard<mutex> hair_cutting_shears_lock(hair_cutting_shears->mutex, adopt_lock);
     lock_guard<mutex> current_customer_lock(current_customer->mutex, adopt_lock);
 
     state = Hairdressers_state::CUTTING_HAIR;
@@ -54,6 +56,12 @@ void Hairdresser::cut_hair() {
 
     current_customer->state = Customers_state::DONE;
     no_of_ready_customers--;
+
+    hair_cutting_shears->areTaken = false;
+    hair_cutting_shears = nullptr;
+
+    thinning_scissors->areTaken = false;
+    thinning_scissors = nullptr;
 }
 
 void Hairdresser::work() {
@@ -74,4 +82,24 @@ shared_ptr<Customer> Hairdresser::wait_for_a_client() {
         }
     }
     return nullptr;
+}
+
+void Hairdresser::wait_for_scissors() {
+    int pairs_taken = 0;
+    while (pairs_taken != 2) {
+        for (const auto& scissors : salon->scissors) {
+            if (!scissors->areTaken) {
+                if (pairs_taken == 0) {
+                    thinning_scissors = scissors;
+                }
+                else {
+                    hair_cutting_shears = scissors;
+                }
+
+                scissors->areTaken = true;
+                pairs_taken++;
+                break;
+            }
+        }
+    }
 }

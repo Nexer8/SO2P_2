@@ -258,6 +258,33 @@ Source/Scissors.cpp.s:
 	$(MAKE) -f CMakeFiles/SO2P_2.dir/build.make CMakeFiles/SO2P_2.dir/Source/Scissors.cpp.s
 .PHONY : Source/Scissors.cpp.s
 
+Source/Supplies.o: Source/Supplies.cpp.o
+
+.PHONY : Source/Supplies.o
+
+# target to build an object file
+Source/Supplies.cpp.o:
+	$(MAKE) -f CMakeFiles/SO2P_2.dir/build.make CMakeFiles/SO2P_2.dir/Source/Supplies.cpp.o
+.PHONY : Source/Supplies.cpp.o
+
+Source/Supplies.i: Source/Supplies.cpp.i
+
+.PHONY : Source/Supplies.i
+
+# target to preprocess a source file
+Source/Supplies.cpp.i:
+	$(MAKE) -f CMakeFiles/SO2P_2.dir/build.make CMakeFiles/SO2P_2.dir/Source/Supplies.cpp.i
+.PHONY : Source/Supplies.cpp.i
+
+Source/Supplies.s: Source/Supplies.cpp.s
+
+.PHONY : Source/Supplies.s
+
+# target to generate assembly for a file
+Source/Supplies.cpp.s:
+	$(MAKE) -f CMakeFiles/SO2P_2.dir/build.make CMakeFiles/SO2P_2.dir/Source/Supplies.cpp.s
+.PHONY : Source/Supplies.cpp.s
+
 Source/Visualizer.o: Source/Visualizer.cpp.o
 
 .PHONY : Source/Visualizer.o
@@ -336,6 +363,9 @@ help:
 	@echo "... Source/Scissors.o"
 	@echo "... Source/Scissors.i"
 	@echo "... Source/Scissors.s"
+	@echo "... Source/Supplies.o"
+	@echo "... Source/Supplies.i"
+	@echo "... Source/Supplies.s"
 	@echo "... Source/Visualizer.o"
 	@echo "... Source/Visualizer.i"
 	@echo "... Source/Visualizer.s"

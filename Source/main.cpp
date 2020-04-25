@@ -7,8 +7,15 @@
 #include "../Headers/Salon.h"
 #include "../Headers/Visualizer.h"
 #include "../Headers/City.h"
+#include "../Headers/Supplies.h"
 
 using namespace std;
+
+/* TODO: Create a class Supplies that would be a separate thread and would wait to supply one of the
+ * salons with new scissors. Scissors, therefore, could be accessed per salon, no matter where they are.
+ * That would require changes in the Hairdresser implementation. There will be no scissors passed in the constructor,
+ * as they already exist in the Salon class. It'll be necessary to implement a wait_for_scissors() function.
+ */
 
 int main() {
     vector<shared_ptr<Hairdresser> > hairdressers;
@@ -27,15 +34,16 @@ int main() {
         for (int i = 0; i < NUMBER_OF_HAIRDRESSERS_PER_SALON; i++) {
             if (i != NUMBER_OF_HAIRDRESSERS_PER_SALON - 1) {
                 hairdressers.emplace_back(
-                        new Hairdresser(salon, *salon->scissors[i], *salon->scissors[i + 1], customers));
+                        new Hairdresser(salon, customers));
             } else {
                 hairdressers.emplace_back(
-                        new Hairdresser(salon, *salon->scissors[i], *salon->scissors[0], customers));
+                        new Hairdresser(salon, customers));
             }
         }
     }
 
     City city(salons);
+    Supplies supplies(salons[0]->scissors);
 
     Visualizer *visualizer = new Visualizer(city, hairdressers);
     this_thread::sleep_for(chrono::seconds(WORKING_DAY_TIME));

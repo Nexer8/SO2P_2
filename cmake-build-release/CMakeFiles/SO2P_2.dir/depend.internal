@@ -29,6 +29,11 @@ CMakeFiles/SO2P_2.dir/Source/Scissors.cpp.o
  /home/mwisniewski/CLionProjects/SO2P_2/Headers/Parameters.h
  /home/mwisniewski/CLionProjects/SO2P_2/Headers/Scissors.h
  /home/mwisniewski/CLionProjects/SO2P_2/Source/Scissors.cpp
+CMakeFiles/SO2P_2.dir/Source/Supplies.cpp.o
+ /home/mwisniewski/CLionProjects/SO2P_2/Headers/Parameters.h
+ /home/mwisniewski/CLionProjects/SO2P_2/Headers/Scissors.h
+ /home/mwisniewski/CLionProjects/SO2P_2/Headers/Supplies.h
+ /home/mwisniewski/CLionProjects/SO2P_2/Source/Supplies.cpp
 CMakeFiles/SO2P_2.dir/Source/Visualizer.cpp.o
  /home/mwisniewski/CLionProjects/SO2P_2/Headers/City.h
  /home/mwisniewski/CLionProjects/SO2P_2/Headers/Customer.h
@@ -45,5 +50,6 @@ CMakeFiles/SO2P_2.dir/Source/main.cpp.o
  /home/mwisniewski/CLionProjects/SO2P_2/Headers/Parameters.h
  /home/mwisniewski/CLionProjects/SO2P_2/Headers/Salon.h
  /home/mwisniewski/CLionProjects/SO2P_2/Headers/Scissors.h
+ /home/mwisniewski/CLionProjects/SO2P_2/Headers/Supplies.h
  /home/mwisniewski/CLionProjects/SO2P_2/Headers/Visualizer.h
  /home/mwisniewski/CLionProjects/SO2P_2/Source/main.cpp
