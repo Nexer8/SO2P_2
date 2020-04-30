@@ -21,7 +21,7 @@
 class Visualizer {
 private:
     std::thread thread;
-    WINDOW *window;
+    WINDOW *window{};
     City &city;
     std::vector<std::shared_ptr<Hairdresser>> &hairdressers;
 
@@ -31,7 +31,7 @@ private:
         int x_margin;
         int y_margin;
         int separator;
-    } params;
+    } params{};
 
     void init();
 

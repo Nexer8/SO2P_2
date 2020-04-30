@@ -11,24 +11,21 @@
 #include <condition_variable>
 #include "Scissors.h"
 
+using namespace std;
+
 static int current_salon_id = 0;
 
 class Salon {
 private:
     int id;
-    std::condition_variable cv;
-    std::mutex cv_m;
 
 public:
-    std::vector<std::shared_ptr<Scissors> > scissors;
-    std::string name;
-    volatile int no_of_ready_hairdressers = 0;
-
-    void wait_for_all();
+    vector<shared_ptr<Scissors> > scissors;
+    string name;
 
     int get_id() { return id; }
 
-    Salon(std::string name);
+    Salon(string name);
 
     ~Salon();
 };

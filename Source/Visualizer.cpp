@@ -79,17 +79,20 @@ void Visualizer::update_screen() {
     init_pair(5, COLOR_MAGENTA, -1);
 
     int mul;
+    int add;
     for (int idx = 0; idx < NUMBER_OF_SALONS; idx++) {
         if (idx == 0) {
             mul = 0;
+            add = 2;
         } else {
+            add = 0;
             mul = COLUMNS_PER_SALON;
         }
         for (int i = 0; i < NUMBER_OF_HAIRDRESSERS_PER_SALON; i++) {
             switch (hairdressers[i + idx * NUMBER_OF_HAIRDRESSERS_PER_SALON]->get_state()) {
                 case Hairdressers_state::WAITING_FOR_A_CLIENT:
                     wattron(window, COLOR_PAIR(1));
-                    mvwprintw(window, 2 * i + 5, (mul * column_width) + 1,
+                    mvwprintw(window, 2 * i + 5, (mul * column_width) + add,
                               (to_string(hairdressers[i + idx * NUMBER_OF_HAIRDRESSERS_PER_SALON]->get_id()) +
                                " Waiting for a client").c_str());
                     wattroff(window, COLOR_PAIR(1));
@@ -97,7 +100,7 @@ void Visualizer::update_screen() {
 
                 case Hairdressers_state::WAITING_FOR_SCISSORS:
                     wattron(window, COLOR_PAIR(2));
-                    mvwprintw(window, 2 * i + 5, (mul * column_width) + 1,
+                    mvwprintw(window, 2 * i + 5, (mul * column_width) + add,
                               (to_string(hairdressers[i + idx * NUMBER_OF_HAIRDRESSERS_PER_SALON]->get_id()) +
                                " Waiting for scissors").c_str());
                     wattroff(window, COLOR_PAIR(2));
@@ -105,7 +108,7 @@ void Visualizer::update_screen() {
 
                 case Hairdressers_state::TAKING_A_BREAK:
                     wattron(window, COLOR_PAIR(3));
-                    mvwprintw(window, 2 * i + 5, (mul * column_width) + 1,
+                    mvwprintw(window, 2 * i + 5, (mul * column_width) + add,
                               (to_string(hairdressers[i + idx * NUMBER_OF_HAIRDRESSERS_PER_SALON]->get_id()) +
                                " Taking a break      ").c_str());
                     wattroff(window, COLOR_PAIR(3));
@@ -113,7 +116,7 @@ void Visualizer::update_screen() {
 
                 case Hairdressers_state::CUTTING_HAIR:
                     wattron(window, COLOR_PAIR(4));
-                    mvwprintw(window, 2 * i + 5, (mul * column_width) + 1,
+                    mvwprintw(window, 2 * i + 5, (mul * column_width) + add,
                               (to_string(hairdressers[i + idx * NUMBER_OF_HAIRDRESSERS_PER_SALON]->get_id()) +
                                " Cutting hair        ").c_str());
                     wattroff(window, COLOR_PAIR(4));
@@ -121,7 +124,7 @@ void Visualizer::update_screen() {
 
                 default:
                     wattron(window, COLOR_PAIR(5));
-                    mvwprintw(window, 2 * i + 5, (mul * column_width) + 1,
+                    mvwprintw(window, 2 * i + 5, (mul * column_width) + add,
                               (to_string(hairdressers[i + idx * NUMBER_OF_HAIRDRESSERS_PER_SALON]->get_id()) +
                                " End of work         ").c_str());
                     wattroff(window, COLOR_PAIR(5));
@@ -135,7 +138,7 @@ void Visualizer::update_screen() {
     int y_axis_alignment;
 
     for (const auto &customer : hairdressers[0]->get_customers()) {
-        if (customer->salon.get() == nullptr) break;
+        if (customer->salon == nullptr) break;
 
         if (customer->salon->get_id() == 0) {
             y_axis_alignment = first_salon_capacity;
@@ -150,21 +153,21 @@ void Visualizer::update_screen() {
         switch (customer->get_state()) {
             case Customers_state::WAITING_FOR_A_CUT:
                 wattron(window, COLOR_PAIR(1));
-                mvwprintw(window, 2 * y_axis_alignment + 5, mul * column_width + 1,
+                mvwprintw(window, 2 * y_axis_alignment + 5, mul * column_width,
                           (to_string(customer->get_id()) + " Waiting for a cut").c_str());
                 wattroff(window, COLOR_PAIR(1));
                 break;
 
             case Customers_state::HAVING_A_HAIRCUT:
                 wattron(window, COLOR_PAIR(4));
-                mvwprintw(window, 2 * y_axis_alignment + 5, mul * column_width + 1,
+                mvwprintw(window, 2 * y_axis_alignment + 5, mul * column_width,
                           (to_string(customer->get_id()) + " Having a haircut ").c_str());
                 wattroff(window, COLOR_PAIR(4));
                 break;
 
             default:
                 wattron(window, COLOR_PAIR(5));
-                mvwprintw(window, 2 * y_axis_alignment + 5, mul * column_width + 1,
+                mvwprintw(window, 2 * y_axis_alignment + 5, mul * column_width,
                           (to_string(customer->get_id()) + " Done             ").c_str());
                 wattroff(window, COLOR_PAIR(5));
                 break;

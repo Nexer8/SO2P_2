@@ -11,15 +11,17 @@
 #include <thread>
 #include "Scissors.h"
 
+using namespace std;
+
 class Supplies {
 private:
-    std::vector<std::shared_ptr<Scissors> > scissors;
-    std::thread life;
+    vector<shared_ptr<Scissors> >  &scissors;
+    thread life;
 
     void supply();
 
 public:
-    Supplies(std::vector<std::shared_ptr<Scissors> > scissors);
+    Supplies(vector<shared_ptr<Scissors> > &scissors);
 
     ~Supplies();
 };

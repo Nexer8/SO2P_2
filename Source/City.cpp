@@ -5,6 +5,7 @@
 #include "../Headers/City.h"
 
 City::City(vector<shared_ptr<Salon> > &salons) : salons(salons) {
+//    no_of_ready_hairdressers = 0;
     no_of_ready_salons = salons.size();
 }
 

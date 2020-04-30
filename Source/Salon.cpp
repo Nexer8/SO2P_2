@@ -4,7 +4,7 @@
 
 #include "../Headers/Salon.h"
 
-Salon::Salon(std::string name) : name(name), id(current_salon_id++) {
+Salon::Salon(string name) : name(name), id(current_salon_id++) {
     for (int i = 0; i < NUMBER_OF_SCISSORS; i++) {
         scissors.emplace_back(new Scissors());
     }
@@ -12,11 +12,4 @@ Salon::Salon(std::string name) : name(name), id(current_salon_id++) {
 
 Salon::~Salon() {
     scissors.clear();
-}
-
-void Salon::wait_for_all() {
-    std::unique_lock<std::mutex> lk(cv_m);
-    no_of_ready_hairdressers++;
-    cv.wait(lk, [&] { return no_of_ready_hairdressers >= NUMBER_OF_HAIRDRESSERS_PER_SALON; });
-    cv.notify_all();
 }

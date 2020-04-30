@@ -11,6 +11,8 @@
 #include "Customer.h"
 #include "Salon.h"
 
+using namespace std;
+
 enum class Hairdressers_state {
     WAITING_FOR_A_CLIENT,
     TAKING_A_BREAK,
@@ -31,13 +33,13 @@ class Hairdresser {
 private:
     int id;
     volatile Hairdressers_state state;
-    std::shared_ptr<Salon> salon;
-    std::shared_ptr<Scissors> thinning_scissors;
-    std::shared_ptr<Scissors> hair_cutting_shears;
-    std::vector<std::shared_ptr<Customer> > &customers;
-    std::thread life;
+    shared_ptr<Salon> salon;
+    shared_ptr<Scissors> thinning_scissors;
+    shared_ptr<Scissors> hair_cutting_shears;
+    vector<shared_ptr<Customer> > &customers;
+    thread life;
 
-    std::shared_ptr<Customer> wait_for_a_client();
+    shared_ptr<Customer> wait_for_a_client();
 
     void work();
 
@@ -46,13 +48,13 @@ private:
     void cut_hair();
 
 public:
-    Hairdresser(std::shared_ptr<Salon> salon, std::vector<std::shared_ptr<Customer> > &customers);
+    Hairdresser(shared_ptr<Salon> salon, vector<shared_ptr<Customer> > &customers);
 
     ~Hairdresser();
 
     int get_id() { return id; }
 
-    std::vector<std::shared_ptr<Customer> > get_customers() {
+    vector<shared_ptr<Customer> > get_customers() {
         return customers;
     }
 
