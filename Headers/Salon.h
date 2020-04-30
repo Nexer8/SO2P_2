@@ -9,6 +9,7 @@
 #include <vector>
 #include <list>
 #include <condition_variable>
+#include <atomic>
 #include "Scissors.h"
 
 using namespace std;
@@ -22,6 +23,7 @@ private:
 public:
     vector<shared_ptr<Scissors> > scissors;
     string name;
+    atomic<int> no_of_available_scissors = NUMBER_OF_SCISSORS_PER_SALON;
 
     int get_id() { return id; }
 

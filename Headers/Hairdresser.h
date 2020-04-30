@@ -7,6 +7,7 @@
 
 #include <thread>
 #include <list>
+#include <atomic>
 #include "Scissors.h"
 #include "Customer.h"
 #include "Salon.h"
@@ -33,6 +34,8 @@ class Hairdresser {
 private:
     int id;
     volatile Hairdressers_state state;
+    condition_variable cv;
+    mutex cv_m;
     shared_ptr<Salon> salon;
     shared_ptr<Scissors> thinning_scissors;
     shared_ptr<Scissors> hair_cutting_shears;
@@ -42,6 +45,10 @@ private:
     shared_ptr<Customer> wait_for_a_client();
 
     void work();
+
+    void get_scissors();
+
+    void return_scissors();
 
     void take_a_break();
 
