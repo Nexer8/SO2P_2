@@ -29,7 +29,7 @@ int main() {
     }
 
     City city(salons);
-//    Supplies supplies(salons[0]->scissors);
+    Supplies supplies(*salons[0]);
 
     unique_ptr<Visualizer> visualizer = make_unique<Visualizer>(city, hairdressers);
     this_thread::sleep_for(chrono::seconds(WORKING_DAY_TIME));

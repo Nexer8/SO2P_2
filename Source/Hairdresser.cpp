@@ -82,12 +82,13 @@ shared_ptr<Customer> Hairdresser::wait_for_a_client() {
 
 void Hairdresser::get_scissors() {
     unique_lock<mutex> lk(cv_m);
-    cout << endl << salon->no_of_available_scissors << endl;
+    cerr << endl << "Available scissors: " << salon->no_of_available_scissors << endl;
     cv.wait(lk, [&] { return salon->no_of_available_scissors >= 2; });
+//    cout << endl << "Hairdresser: " << id << endl;
 
     int taken = 0;
-    for (auto scissors : salon->scissors) {
-        cout << endl << "Taken: " << taken << endl;
+    for (const auto& scissors : salon->scissors) {
+//        cerr << endl << "Taken: " << taken << endl;
         if (taken == 2) break;
         if (!scissors->areTaken) {
             scissors->areTaken = true;

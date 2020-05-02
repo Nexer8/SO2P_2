@@ -9,19 +9,19 @@
 #include <memory>
 #include <vector>
 #include <thread>
-#include "Scissors.h"
+#include "Salon.h"
 
 using namespace std;
 
 class Supplies {
 private:
-    vector<shared_ptr<Scissors> >  &scissors;
+    Salon &salon;
     thread life;
 
     void supply();
 
 public:
-    Supplies(vector<shared_ptr<Scissors> > &scissors);
+    Supplies(Salon &salon);
 
     ~Supplies();
 };
