@@ -23,7 +23,7 @@ enum class Hairdressers_state {
 };
 
 static int current_hairdresser_id = 0;
-static volatile int no_of_ready_customers = NUMBER_OF_CLIENTS;
+static atomic<int> no_of_ready_customers = NUMBER_OF_CLIENTS;
 
 /*! \class Hairdresser
     \brief A class that simulates hairdresser.

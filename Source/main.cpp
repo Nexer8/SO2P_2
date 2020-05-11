@@ -21,7 +21,7 @@ int main() {
         salons.emplace_back(new Salon("Salon " + to_string(i)));
     }
 
-    for (const auto& salon: salons) {
+    for (const auto &salon: salons) {
         for (int i = 0; i < NUMBER_OF_HAIRDRESSERS_PER_SALON; i++) {
             hairdressers.emplace_back(
                     new Hairdresser(salon, customers));

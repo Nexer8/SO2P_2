@@ -16,7 +16,6 @@ void Supplies::supply() {
 }
 
 Supplies::~Supplies() {
-//    scissors.clear();
     life.join();
 }
 

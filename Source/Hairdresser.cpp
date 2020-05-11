@@ -43,18 +43,13 @@ void Hairdresser::cut_hair() {
     if (current_customer == nullptr) {
         return_scissors();
         return;
-    } else {
-        current_customer->state = Customers_state::HAVING_A_HAIRCUT;
     }
-
-    lock_guard<mutex> current_customer_lock(current_customer->mutex, adopt_lock);
 
     state = Hairdressers_state::CUTTING_HAIR;
     this_thread::sleep_for(chrono::milliseconds(CUTTING_HAIR_TIME));
 
     current_customer->state = Customers_state::DONE;
     no_of_ready_customers--;
-
     return_scissors();
 }
 
@@ -68,26 +63,30 @@ void Hairdresser::work() {
 }
 
 shared_ptr<Customer> Hairdresser::wait_for_a_client() {
+    if (no_of_ready_customers == 0) return nullptr;
+
     for (auto customer : customers) {
         customer->mutex.lock();
+        lock_guard<mutex> customer_lock(customer->mutex, adopt_lock);
         if (customer->get_state() == Customers_state::WAITING_FOR_A_CUT) {
             customer->salon = salon;
+            customer->state = Customers_state::HAVING_A_HAIRCUT;
 
             return customer;
         }
-        customer->mutex.unlock();
     }
     return nullptr;
 }
 
 void Hairdresser::get_scissors() {
     unique_lock<mutex> lk(cv_m);
-    cerr << endl << "Available scissors: " << salon->no_of_available_scissors << endl;
+//    cerr << endl << "Available scissors: " << salon->no_of_available_scissors << endl;
     cv.wait(lk, [&] { return salon->no_of_available_scissors >= 2; });
 //    cout << endl << "Hairdresser: " << id << endl;
+//    cout << "\nAfter\n";
 
     int taken = 0;
-    for (const auto& scissors : salon->scissors) {
+    for (const auto &scissors : salon->scissors) {
 //        cerr << endl << "Taken: " << taken << endl;
         if (taken == 2) break;
         if (!scissors->areTaken) {
@@ -107,6 +106,7 @@ void Hairdresser::get_scissors() {
 
 
 void Hairdresser::return_scissors() {
+//    static int i = 0;
     thinning_scissors->areTaken = false;
     thinning_scissors = nullptr;
 
@@ -116,4 +116,5 @@ void Hairdresser::return_scissors() {
     salon->no_of_available_scissors += 2;
 
     cv.notify_all();
+//    cout << endl << i++ << " Notified all\n";
 }
