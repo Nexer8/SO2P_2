@@ -18,5 +18,3 @@ void Supplies::supply() {
 Supplies::~Supplies() {
     life.join();
 }
-
-

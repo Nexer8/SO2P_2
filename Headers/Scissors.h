@@ -8,6 +8,11 @@
 #include <mutex>
 #include "Parameters.h"
 
+/*! \class Scissors
+    \brief A class that is responsible for imitating scissors.
+
+    Scissors used by Hairdressers inside a salon.
+*/
 class Scissors {
 public:
     volatile bool areTaken = false;

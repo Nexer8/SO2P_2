@@ -12,6 +12,11 @@
 
 extern std::atomic<int> no_of_ready_hairdressers;
 
+/*! \class CommonTools
+    \brief A class that implements commonly used tools.
+
+    CommonTools used by other classes.
+*/
 class CommonTools {
 public:
     static std::condition_variable cv;

@@ -34,8 +34,6 @@ class Hairdresser {
 private:
     int id;
     volatile Hairdressers_state state;
-    condition_variable cv;
-    mutex cv_m;
     shared_ptr<Salon> salon;
     shared_ptr<Scissors> thinning_scissors;
     shared_ptr<Scissors> hair_cutting_shears;
@@ -64,8 +62,6 @@ public:
     vector<shared_ptr<Customer> > get_customers() {
         return customers;
     }
-
-    void wait_for_scissors();
 
     Hairdressers_state get_state() { return state; }
 };

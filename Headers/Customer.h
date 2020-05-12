@@ -18,6 +18,11 @@ enum class Customers_state {
     DONE
 };
 
+/*! \class Customer
+    \brief A class that imitates a client at hairdresser's salon.
+
+    Customer that wants a haircut.
+*/
 class Customer {
 private:
     int id;

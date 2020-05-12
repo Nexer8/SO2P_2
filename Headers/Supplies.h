@@ -13,6 +13,11 @@
 
 using namespace std;
 
+/*! \class Supplies
+    \brief A class that is responsible for supplying a salon with scissors.
+
+    Supplies of scissors during the work day.
+*/
 class Supplies {
 private:
     Salon &salon;

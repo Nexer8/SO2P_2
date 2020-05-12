@@ -10,6 +10,11 @@
 
 using namespace std;
 
+/*! \class City
+    \brief A class that wraps salons together.
+
+    City where salons are located.
+*/
 class City {
 public:
     vector<shared_ptr<Salon> > &salons;
