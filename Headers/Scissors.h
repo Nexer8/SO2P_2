@@ -6,6 +6,7 @@
 #define SO2P_2_SCISSORS_H
 
 #include <mutex>
+#include <atomic>
 #include "Parameters.h"
 
 /*! \class Scissors
@@ -15,7 +16,7 @@
 */
 class Scissors {
 public:
-    volatile bool areTaken = false;
+    std::atomic<bool> areTaken = false;
 };
 
 

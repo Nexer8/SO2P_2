@@ -33,7 +33,7 @@ static atomic<int> no_of_ready_customers = NUMBER_OF_CLIENTS;
 class Hairdresser {
 private:
     int id;
-    volatile Hairdressers_state state;
+    atomic<Hairdressers_state> state;
     shared_ptr<Salon> salon;
     shared_ptr<Scissors> thinning_scissors;
     shared_ptr<Scissors> hair_cutting_shears;

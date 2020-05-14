@@ -29,11 +29,9 @@ private:
 public:
     std::shared_ptr<Salon> salon;
     std::mutex mutex;
-    volatile Customers_state state;
+    std::atomic<Customers_state> state;
 
     int get_id() { return id; }
-
-    volatile Customers_state get_state() { return state; }
 
     Customer();
 };

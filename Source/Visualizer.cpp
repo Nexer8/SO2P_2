@@ -150,7 +150,7 @@ void Visualizer::update_screen() {
             mul = 1 + COLUMNS_PER_SALON;
         }
 
-        switch (customer->get_state()) {
+        switch (customer->state) {
             case Customers_state::WAITING_FOR_A_CUT:
                 wattron(window, COLOR_PAIR(1));
                 mvwprintw(window, 2 * y_axis_alignment + 5, mul * column_width,

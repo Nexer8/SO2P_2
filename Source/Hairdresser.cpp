@@ -28,6 +28,56 @@ void Hairdresser::take_a_break() {
     this_thread::sleep_for(chrono::milliseconds(BREAK_TIME));
 }
 
+void Hairdresser::get_scissors() {
+    unique_lock<mutex> lk(salon->cv_m);
+    salon->cv.wait(lk, [&] { return salon->no_of_available_scissors >= 2; });
+
+    int taken = 0;
+    for (const auto &scissors : salon->scissors) {
+        if (taken == 2) break;
+        if (!scissors->areTaken) {
+            scissors->areTaken = true;
+
+            if (taken == 0) {
+                hair_cutting_shears = scissors;
+            }
+            if (taken == 1) {
+                thinning_scissors = scissors;
+            }
+            taken++;
+        }
+    }
+    salon->no_of_available_scissors -= 2;
+}
+
+void Hairdresser::return_scissors() {
+    thinning_scissors->areTaken = false;
+    thinning_scissors = nullptr;
+
+    hair_cutting_shears->areTaken = false;
+    hair_cutting_shears = nullptr;
+
+    salon->no_of_available_scissors += 2;
+
+    salon->cv.notify_all();
+}
+
+shared_ptr<Customer> Hairdresser::wait_for_a_client() {
+    if (no_of_ready_customers == 0) return nullptr;
+
+    for (auto customer : customers) {
+        customer->mutex.lock();
+        lock_guard<mutex> customer_lock(customer->mutex, adopt_lock);
+        if (customer->state == Customers_state::WAITING_FOR_A_CUT) {
+            customer->salon = salon;
+            customer->state = Customers_state::HAVING_A_HAIRCUT;
+
+            return customer;
+        }
+    }
+    return nullptr;
+}
+
 void Hairdresser::cut_hair() {
     if (no_of_ready_customers == 0) {
         state = Hairdressers_state::END_OF_WORK;
@@ -60,55 +110,4 @@ void Hairdresser::work() {
         take_a_break();
         cut_hair();
     }
-}
-
-shared_ptr<Customer> Hairdresser::wait_for_a_client() {
-    if (no_of_ready_customers == 0) return nullptr;
-
-    for (auto customer : customers) {
-        customer->mutex.lock();
-        lock_guard<mutex> customer_lock(customer->mutex, adopt_lock);
-        if (customer->get_state() == Customers_state::WAITING_FOR_A_CUT) {
-            customer->salon = salon;
-            customer->state = Customers_state::HAVING_A_HAIRCUT;
-
-            return customer;
-        }
-    }
-    return nullptr;
-}
-
-void Hairdresser::get_scissors() {
-    unique_lock<mutex> lk(salon->cv_m);
-    salon->cv.wait(lk, [&] { return salon->no_of_available_scissors >= 2; });
-
-    int taken = 0;
-    for (const auto &scissors : salon->scissors) {
-        if (taken == 2) break;
-        if (!scissors->areTaken) {
-            scissors->areTaken = true;
-
-            if (taken == 0) {
-                hair_cutting_shears = scissors;
-            }
-            if (taken == 1) {
-                thinning_scissors = scissors;
-            }
-            taken++;
-        }
-    }
-    salon->no_of_available_scissors -= 2;
-}
-
-
-void Hairdresser::return_scissors() {
-    thinning_scissors->areTaken = false;
-    thinning_scissors = nullptr;
-
-    hair_cutting_shears->areTaken = false;
-    hair_cutting_shears = nullptr;
-
-    salon->no_of_available_scissors += 2;
-
-    salon->cv.notify_all();
 }

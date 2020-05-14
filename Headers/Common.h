@@ -10,7 +10,9 @@
 #include <mutex>
 #include "Parameters.h"
 
-extern std::atomic<int> no_of_ready_hairdressers;
+using namespace std;
+
+extern atomic<int> no_of_ready_hairdressers;
 
 /*! \class CommonTools
     \brief A class that implements commonly used tools.
@@ -19,8 +21,8 @@ extern std::atomic<int> no_of_ready_hairdressers;
 */
 class CommonTools {
 public:
-    static std::condition_variable cv;
-    static std::mutex cv_m;
+    static condition_variable cv;
+    static mutex cv_m;
 
     static void wait_for_salons();
 };

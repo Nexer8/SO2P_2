@@ -1,6 +1,5 @@
 #include "../Headers/Common.h"
 #include "../Headers/Hairdresser.h"
-#include "../Headers/Parameters.h"
 #include "../Headers/Supplies.h"
 #include "../Headers/Visualizer.h"
 #include <iostream>
